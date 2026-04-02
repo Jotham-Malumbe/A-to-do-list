@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List App</title>
+
+  <style>
+    /* Style the whole page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+      border: solid pink;
+    }
+
+    /* Title styling */
+    h2 {
+      color: #333;
+    }
+
+    /* Input box styling */
+    input {
+      padding: 10px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Button styling */
+    button {
+      padding: 10px;
+      margin-left: 5px;
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Hover effect for button */
+    button:hover {
+      background-color: darkblue;
+    }
+
+    /* Task list styling */
+    ul {
+      margin-top: 20px;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    /* Each task item */
+    li {
+      background: white;
+      padding: 10px;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Delete button style */
+    .delete-btn {
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>My To-Do List</h2>
+
+  <!-- Input field for typing tasks -->
+  <input type="text" id="taskInput" placeholder="Enter a task">
+
+  <!-- Button to add task -->
+  <button onclick="addTask()">Add</button>
+
+  <!-- List where tasks will appear -->
+  <ul id="taskList"></ul>
+
+  <script>
+    // Function runs when "Add" button is clicked
+    function addTask() {
+
+      // Get the value typed by the user
+      let task = document.getElementById("taskInput").value;
+
+      // Check if input is empty
+      if (task === "") {
+        alert("Please enter a task");
+        return; // Stop the function
+      }
+
+      // Create a new list item (li)
+      let li = document.createElement("li");
+
+      // Put the task text inside the list item
+      li.innerText = task;
+
+      // Create a delete button
+      let deleteBtn = document.createElement("button");
+      deleteBtn.innerText = "Delete";
+      deleteBtn.className = "delete-btn";
+
+      // When delete button is clicked, remove the task
+      deleteBtn.onclick = function() {
+        li.remove();
+      };
+
+      // Add delete button inside the list item
+      li.appendChild(deleteBtn);
+
+      // Add the list item to the task list (ul)
+      document.getElementById("taskList").appendChild(li);
+
+      // Clear the input box after adding task
+      document.getElementById("taskInput").value = "";
+    }
+  </script>
+
+</body>
+</html>
+
